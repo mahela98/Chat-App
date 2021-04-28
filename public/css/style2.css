@@ -222,8 +222,8 @@ body {
 .message-feed.right {
   text-align: right;
 }
-#ms-menu-trigger,
+/* #ms-menu-trigger,
 .toggle-switch {
   -webkit-user-select: none;
   -moz-user-select: none;
-}
+} */
