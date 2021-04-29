@@ -1,0 +1,14 @@
+body{
+    background-image: linear-gradient(to left, rgb(65, 0, 150) , rgba(0, 8, 34, 0.973));
+
+}
+.form-group{
+    padding: 10px;
+}
+.container{
+    padding-top: 10%;
+}
+.text-info{
+    letter-spacing:4px;
+    padding-bottom: 10px;
+}
