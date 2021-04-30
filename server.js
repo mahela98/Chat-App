@@ -14,7 +14,7 @@ const app = express();
 const server = http.createServer(app);
 const io = scoketio(server);
 
-const PORT = 3000 || process.env.PORT;
+const PORT =  process.env.PORT || 3000;
 
 // set a static folder
 app.use(express.static(path.join(__dirname, 'public')));
