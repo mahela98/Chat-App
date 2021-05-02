@@ -30,6 +30,15 @@ socket.on('message' , message => {
  chatMessages.scrollTop= chatMessages.scrollHeight;
 });
 
+//message from bot (my version)
+socket.on('messageFromBot' , message => {
+    console.log(message);
+    outputMessageFromBot(message);
+   
+    //scrol down to the new message
+    chatMessages.scrollTop= chatMessages.scrollHeight;
+   });
+
 //message submit
 // e means event paramiter
 chatForm.addEventListener('submit',(e) => {
@@ -58,6 +67,20 @@ function outputMessage(message){
 
     document.querySelector('.chat-messages').appendChild(div);
 }
+
+//output message to dome from bot
+function outputMessageFromBot(message){
+    const div = document.createElement('div');
+    div.classList.add('message');
+    div.innerHTML = `<p class="meta"> ${message.username} <span> ${message.time}</span></p>
+    <p class="text">
+        ${message.text} -- from bot
+    </p>`;
+
+    document.querySelector('.chat-messages').appendChild(div);
+}
+
+
 
 //add room name to DOM
 function outputRoomName(room){

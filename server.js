@@ -35,10 +35,11 @@ io.on('connection', socket => {
         socket.join(user.room);
 
         //sents to the frontend main.js file when new user connects (only for the user)
-        socket.emit('message', formatMessage(botName, 'Welcome to chat !'));
+        // socket.emit('message', formatMessage(botName, 'Welcome to chat !'));
+        socket.emit('messageFromBot', formatMessage(botName, 'Welcome to chat !'));
 
         //brodcast when a user connects (all users execpt joined one )
-        socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`));
+        socket.broadcast.to(user.room).emit('messageFromBot', formatMessage(botName, `${user.username} has joined the chat`));
 
         //send users and room info
         io.to(user.room).emit('roomUsers', {
@@ -48,13 +49,13 @@ io.on('connection', socket => {
         });
     });
 
-    // (io.emit ) for all users
+    
 
     // listen for chat message
     socket.on('chatMessage', msg => {
         // console.log(msg);
         const user = getCurrentUser(socket.id);
-
+        // (io.emit ) for all users
         io.to(user.room).emit('message', formatMessage(user.username, msg));
     });
 
@@ -63,7 +64,7 @@ io.on('connection', socket => {
 
         const user = userleaves(socket.id);
         if(user){
-            io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`));
+            io.to(user.room).emit('messageFromBot', formatMessage(botName, `${user.username} has left the chat`));
 
              //send users and room info
         io.to(user.room).emit('roomUsers', {
